@@ -1,0 +1,100 @@
+---
+title: "DAB103 Team 04"
+author: "Team 04"
+date: "24/06/2021"
+output:  
+  html_document:
+    df_print: paged
+---
+
+## Code
+
+<b>TEAM MEMBERS</b>
+
+1. Rutvik Shah
+
+2. Nishtha Mistri
+
+3. Parth Sheth 
+
+4. Gargiben Patel
+
+5. Devarsh Modi
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Importing librarys
+
+```{r}
+library(here)
+library(tidyverse)
+```
+
+### Importing Dataset
+
+```{r}
+calo <- read_csv(here("data/calo.csv"))
+```
+
+
+### Relationship between Total carbohydrates and Calories
+
+```{r}
+
+ggplot(calo,mapping = aes(total_carb,calories))+
+  geom_point()+
+  theme(panel.background = element_rect(fill = 'White'))+
+  geom_smooth(se=FALSE,colour="red")+
+  
+  labs( x = "Total carbohydrates", y = "Calories",
+        title = "Relationship between Total carbohydrates and Calories",
+        caption = "Fastfood_calories dataset from tidytuesday")
+
+```
+
+### Relationship between Calories from fat  and Calories
+
+```{r}
+
+ggplot(calo,mapping = aes(cal_fat,calories))+
+  geom_point()+
+  theme(panel.background = element_rect(fill = 'White'))+
+  geom_smooth(se=FALSE,colour="red")+
+  
+  labs( x = "Calories from fat", y = "Calories",
+        title = "Relationship between Calories from fat  and Calories",
+        caption = "Fastfood_calories dataset from tidytuesday")
+
+```
+
+### Number of items served by the restaurants
+
+```{r}
+
+ggplot(calo)+
+  geom_bar(mapping = aes(restaurant),fill="lightblue")+
+  theme(panel.background = element_rect(fill = 'White'))+
+  coord_flip()+
+  labs( x = "Restaurants", y = "Number of items in menu",
+        title = "Number of items served by the restaurants",
+        caption = "Fastfood_calories dataset from tidytuesday")
+
+```
+
+### Amount of calories served by the restaurants
+
+```{r}
+
+ggplot(calo)+
+  geom_line(mapping = aes(restaurant,calories))+
+  theme(panel.background = element_rect(fill = 'White'))+
+  coord_flip()+
+  labs( x = "Restaurants", y="Amount of Calories", colour="",
+        title = "Amount of calories served by the restaurants",
+        caption = "Fastfood_calories dataset from tidytuesday")
+
+```
+
+  
